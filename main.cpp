@@ -1,51 +1,29 @@
-//
-//  main.cpp
-//  Prime
-//
-//  Created by Zahid Hussain on 31/01/2013.
-//  Copyright (c) 2013 maxxsol. All rights reserved.
-//
-
 #include <iostream>
+using namespace std;
 
-bool isPrime(long num);
+int main() {
+    int i, n;
+    bool isPrime = true;
 
-int main(int argc, const char * argv[])
-{
+    cout << "Enter a positive integer: ";
+    cin >> n;
 
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    long twoM = 2000000;
-    long sum = 2;
-    long counter = 3;
-    while (sum < twoM) {
-        
-        if (isPrime(counter)) {
-            
-            if (sum + counter > twoM) {
+    // 0 and 1 are not prime numbers
+    if (n == 0 || n == 1) {
+        isPrime = false;
+    }
+    else {
+        for (i = 2; i <= n / 2; ++i) {
+            if (n % i == 0) {
+                isPrime = false;
                 break;
             }
-            else
-                sum = sum + counter;
-            std::cout << " Prime : "<<counter<<" Sum : "<<sum <<"\n";            
         }
-        counter++;
     }
-    
-    return 0;
-}
+    if (isPrime)
+        cout << n << " is a prime number";
+    else
+        cout << n << " is not a prime number";
 
-bool isPrime(long num)
-{
-    bool result = true;
-    
-    for (long i = 2 ; i < num/2 + 1; ++i) {
-        
-        if (num % i == 0) {
-            result = false;
-            break;
-        }
-    }
-    
-    return result;
+    return 0;
 }
